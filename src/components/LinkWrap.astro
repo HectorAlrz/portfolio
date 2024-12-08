@@ -1,0 +1,11 @@
+<a
+aria-label={`Link to ${Astro.props.label}`}
+aria-labelledby="navbar-toggle"
+href={Astro.props.href}
+class={Astro.props.class}
+target="_blank"
+rel="noopener"
+{...Astro.props}
+>
+    <slot />
+</a>

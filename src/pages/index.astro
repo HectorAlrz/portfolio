@@ -1,0 +1,71 @@
+---
+import ContactItems from '../components/ContactItems.astro';
+import Experience from '../components/Experience.astro';
+import Layout from '../layouts/Layout.astro';
+import SectionContainer from '../components/common/SectionContainer.astro';
+---
+
+<Layout>
+	<main>
+		<SectionContainer className="py-44">
+			<h1 class="flex flex-row text-white text-5xl font-bold gap-x-4 pb-4">
+				Hello there!, I'm Héctor 
+			</h1>
+			<p class="text-2xl opacity-80 text-wrap">
+				Highly motivated <span class="cyberpunk-text">front-end developer</span> with 2+ years of experience 
+				specializing in modernizing and optimizing web applications and driven by a commitment to continuous learning and innovation
+				<span class="block">From Xalapa, Mexico.</span>
+			</p>
+			<ContactItems />
+		</SectionContainer>
+		<SectionContainer>
+			<h2 class="font-bold font-heading leading-tighter tracking-tighter text-heading text-3xl lg:text-4xl pb-4">WorkExperience</h2>
+			<Experience />
+		</SectionContainer>
+	</main>
+</Layout>
+
+<style>
+	.cyberpunk-text {
+	  background-clip: text;
+	  -webkit-background-clip: text;
+	  color: transparent;
+	  animation: gradient-animation 3s ease infinite, color-animation 5s ease infinite;
+	}
+
+	@keyframes gradient-animation {
+	  0% {
+	    background-image: linear-gradient(to right, #0f0, #0ff);
+	  }
+	  25% {
+	    background-image: linear-gradient(to bottom, #0ff, #f0f);
+	  }
+	  50% {
+	    background-image: linear-gradient(to left, #f0f, #ff0);
+	  }
+	  75% {
+	    background-image: linear-gradient(to top, #ff0, #f00);
+	  }
+	  100% {
+	    background-image: linear-gradient(to right, #f00, #0f0);
+	  }
+	}
+
+	@keyframes color-animation {
+	  0% {
+	    color: #0f0;
+	  }
+	  25% {
+	    color: #0ff;
+	  }
+	  50% {
+	    color: #f0f;
+	  }
+	  75% {
+	    color: #ff0;
+	  }
+	  100% {
+	    color: #0f0;
+	  }
+	}
+</style>
