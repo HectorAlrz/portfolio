@@ -1,6 +1,14 @@
 ---
 import ExperienceItem from './ExperienceItem.astro'
+import { EXPERIENCE } from "../helpers/experienceHelper";
 ---
-<ol class="relative border-s border-gray-200 dark:border-gray-700">
-  <ExperienceItem />
-</ol>
+
+<div class="relative border-s border-gray-200 dark:border-gray-700">
+  {
+    EXPERIENCE.map((job) => {
+      const {date, description, link, title, id} = job
+
+      return (<ExperienceItem key={id} title={title} date={date} description={description} link={link} />)
+    })
+  }
+</div>

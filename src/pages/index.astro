@@ -6,19 +6,19 @@ import SectionContainer from '../components/common/SectionContainer.astro';
 ---
 
 <Layout>
-	<main>
-		<SectionContainer className="py-44">
-			<h1 class="flex flex-row text-white text-5xl font-bold gap-x-4 pb-4">
+	<main class="relative px-4 sm:px-8 lg:px-16">
+		<SectionContainer className="py-16 sm:py-32 lg:py-44 px-4 sm:px-8 lg:px-16">
+			<h1 class="flex flex-row  justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-bold gap-x-4 pb-4">
 				Hello there!, I'm Héctor 
 			</h1>
-			<p class="text-2xl opacity-80 text-wrap">
+			<p class="text-2xl opacity-80 text-pretty">
 				Highly motivated <span class="cyberpunk-text">front-end developer</span> with 2+ years of experience 
 				specializing in modernizing and optimizing web applications and driven by a commitment to continuous learning and innovation
 				<span class="block">From Xalapa, Mexico.</span>
 			</p>
 			<ContactItems />
 		</SectionContainer>
-		<SectionContainer>
+		<SectionContainer className="py-16 sm:py-32 lg:py-44">
 			<h2 class="font-bold font-heading leading-tighter tracking-tighter text-heading text-3xl lg:text-4xl pb-4">WorkExperience</h2>
 			<Experience />
 		</SectionContainer>

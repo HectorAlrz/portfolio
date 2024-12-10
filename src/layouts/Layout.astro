@@ -1,45 +1,115 @@
 ---
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/onest";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Hector Dev",
+  description = "Portfolio and personal website of Hector Dev - Full Stack Developer",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/code.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
     <ClientRouter fallback="swap" />
-    <title>Hector Dev</title>
+    <title>{title}</title>
   </head>
-  <body>
-    <div
-      class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-    >
+  <body class="antialiased">
+    <!-- Background gradient -->
+    <div class="relative h-full w-full bg-slate-950">
+      <div
+        class="fixed inset-0 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+      >
+      </div>
+
+      <!-- Skip to main content link for accessibility -->
+      <a
+        href="#main-content"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded"
+      >
+        Skip to main content
+      </a>
+      <Header />
+
+      <main id="main-content" class="flex-1">
+        <slot />
+      </main>
+
+      <Footer />
     </div>
-    <Header />
-    <slot />
-  </body>
+
+    <style is:global>
+      :root {
+        --bg-color: rgba(17, 17, 17, 0.9);
+        color-scheme: light dark;
+      }
+
+      html {
+        font-family:
+          "Onest Variable",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background: var(--bg-color);
+        overscroll-behavior: none;
+      }
+
+      /* For WebKit browsers */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: rgba(120, 119, 198, 0.3);
+        border-radius: 4px;
+      }
+
+      /* Improve focus styles */
+      :focus-visible {
+        outline: 2px solid rgba(120, 119, 198, 0.5);
+        outline-offset: 2px;
+      }
+
+      /* Improve text selection */
+      ::selection {
+        background: rgba(120, 119, 198, 0.3);
+        color: inherit;
+      }
+    </style></body>
 </html>
-
-<style define:vars={{ bgColor: "rgba(17, 17, 17, 0.9)" }}>
-  :root {
-    color-scheme: light dark;
-  }
-
-  html {
-    font-family: "Onest Variable", system-ui, BlinkMacSystemFont, Ubuntu,
-      Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    scroll-behavior: smooth;
-  }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    background: var(--bgColor);
-    height: 100vh;
-    overscroll-behavior: none;
-  }
-</style>
