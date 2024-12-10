@@ -1,11 +1,15 @@
 ---
 import ExperienceItem from './ExperienceItem.astro'
-import { EXPERIENCE } from "../helpers/experienceHelper";
+import { ES_EXPERIENCE, EXPERIENCE } from '../../helpers/experienceHelper';
+
+const currentLang = Astro.currentLocale || 'en';
+
+const exp = currentLang === 'es' ? ES_EXPERIENCE : EXPERIENCE
 ---
 
 <div class="relative border-s border-gray-200 dark:border-gray-700">
   {
-    EXPERIENCE.map((job) => {
+    exp.map((job) => {
       const {date, description, link, title, id} = job
 
       return (<ExperienceItem key={id} title={title} date={date} description={description} link={link} />)

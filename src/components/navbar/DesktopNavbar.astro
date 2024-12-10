@@ -1,33 +1,53 @@
-{/* Desktop Navigation */}
-<nav class="hidden sm:block">
-  <ul class="flex items-center gap-8">
+---
+import LanguagePicker from "../LanguagePicker.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { useTranslations } from "../../i18n/utils";
+import { languageList } from "../../i18n/ui";
+
+const currentLang = Astro.currentLocale || 'en';
+
+const translateLabels = useTranslations(
+  currentLang as keyof typeof languageList
+);
+---
+
+<nav class="hidden md:block">
+  <ul class="flex items-center md:gap-4 lg:gap-8">
     <li>
       <a
-        href="#"
+        href={getRelativeLocaleUrl(currentLang, "/")}
         class="rounded-md hover:bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-        >Home</a
-      >
+        >
+        {translateLabels("nav.home")}
+      </a>
     </li>
     <li>
       <a
         href="#"
         class="rounded-md hover:bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-        >About</a
-      >
+        >
+        {translateLabels("nav.about")}
+      </a>
     </li>
     <li>
       <a
         href="#"
         class="rounded-md hover:bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-        >Projects</a
       >
+      {translateLabels("nav.projects")}
+      </a>
     </li>
     <li>
       <a
         href="#"
         class="rounded-md hover:bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-        >Contact</a
       >
+      {translateLabels("nav.contact")}
+      </a
+      >
+    </li>
+    <li>
+      <LanguagePicker />
     </li>
   </ul>
 </nav>

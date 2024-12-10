@@ -1,0 +1,32 @@
+---
+import { languageList } from "../i18n/ui";
+import LanguageIcon from "../icons/LanguageIcon.astro";
+
+const currentPath = Astro.url.pathname;
+const defaultLang = Object.keys(languageList)[0];
+const selectedLang = currentPath.split("/")[1] || defaultLang;
+
+const isMobile: boolean = Astro.props.isMobile
+---
+
+<div class={`rounded-md relative inline-flex items-center hover:text-gray-400 px-2 text-sm font-medium text-white group ${isMobile ? 'py-0' : 'py-2'} `} >
+  <LanguageIcon class="absolute left-2 size-4 pointer-events-none" /> 
+  <select
+    onchange="window.location.href = this.value"
+    class={`
+      bg-transparent pl-6 cursor-pointer
+      focus:outline-none focus:ring-1 focus:ring-offset-2
+      focus:ring-offset-gray-900 focus:ring-indigo-500 rounded-md
+      ${isMobile ? 'block py-0' : 'py-1'}
+    `}
+  >
+    <span>Select Language</span>
+    {
+      Object.entries(languageList).map(([lang, label]) => (
+        <option value={`/${lang}/`} selected={lang === selectedLang}>
+          {label}
+        </option>
+      ))
+    }
+  </select>
+</div>

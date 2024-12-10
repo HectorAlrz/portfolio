@@ -4,13 +4,16 @@ import DesktopNavbar from "./navbar/DesktopNavbar.astro";
 import MobileNavbar from "./navbar/MobileNavbar.astro";
 import WorkBadge from "./WorkBadge.astro";
 
-const { isMenuOpen = false } = Astro.props;
+let isMenuOpen = false; // Tracks menu open/close state
+function toggleMenu() {
+  isMenuOpen = !isMenuOpen;
+}
 ---
 
 <header class="sticky top-0 backdrop-blur-sm z-50 header">
   <div class="px-4 py-4 mx-auto max-w-[1120px] w-full">
     <div class="flex items-center justify-between">
-      <div class="flex items-center gap-x-4">
+      <div class="flex items-center gap-x-4 pl-4">
         <Avatar />
         <WorkBadge />
       </div>
@@ -18,7 +21,7 @@ const { isMenuOpen = false } = Astro.props;
       {/* Burger Button */}
       <button
         id="menu-toggle"
-        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:hidden"
+        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden"
         aria-expanded="false"
         aria-label="Toggle menu"
       >
@@ -36,22 +39,25 @@ const { isMenuOpen = false } = Astro.props;
             d="M4 6h16M4 12h16m-16 6h16"></path>
         </svg>
       </button>
-      <MobileNavbar />
+      <MobileNavbar isOpen={isMenuOpen} />
     </div>
   </div>
 </header>
 
 <script>
   const menuButton = document.getElementById("menu-toggle");
-  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileMenu = document.querySelector("#mobile-menu");
 
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener("click", () => {
-      const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", !isExpanded);
-      mobileMenu.classList.toggle("hidden");
-    });
+  function toggleMenu() {
+    const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", !isExpanded);
+    if (mobileMenu) {
+      mobileMenu.classList.toggle("translate-x-0");
+      mobileMenu.classList.toggle("-translate-x-full");
+    }
   }
+  
+  menuButton.addEventListener("click", toggleMenu);
 
   const header = document.querySelector(".header");
   window.addEventListener("scroll", () => {

@@ -1,30 +1,118 @@
-{/* Mobile Navigation */}
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import LanguagePicker from "../LanguagePicker.astro";
+
+import { useTranslations } from "../../i18n/utils";
+import { languageList } from "../../i18n/ui";
+
+const { isOpen } = Astro.props;
+const currentLang = Astro.currentLocale || "en";
+
+const translateLabels = useTranslations(
+  currentLang as keyof typeof languageList
+);
+---
+
 <div
-  id="mobile-menu"
-  class="hidden rounded-lg text-center w-full absolute top-full left-0 bg-white border-b sm:hidden"
->
-  <nav class="px-4 py-3">
+  class={`sidebar bg-gray-800 transform transition-transform duration-300 ${
+    isOpen ? "translate-x-0" : "-translate-x-full"
+  }`} id="mobile-menu">
+  <div class="sidebar-header">
+    <h1>Hector Dev.</h1>
+  </div>
+  <nav class="sidebar-nav">
     <ul class="space-y-3">
       <li>
-        <a href="#" class="block text-gray-700 hover:text-gray-900 font-medium"
-          >Home</a
+        <a
+          href="#"
+          class={`block font-medium ${
+            true
+              ? "text-white hover:text-gray-100"
+              : "text-gray-700 hover:text-gray-900"
+          }`}>{translateLabels("nav.home")}</a
         >
       </li>
       <li>
-        <a href="#" class="block text-gray-700 hover:text-gray-900 font-medium"
-          >About</a
+        <a
+          href="#"
+          class={`block font-medium ${
+            true
+              ? "text-white hover:text-gray-100"
+              : "text-gray-700 hover:text-gray-900"
+          }`}>{translateLabels("nav.about")}</a
         >
       </li>
       <li>
-        <a href="#" class="block text-gray-700 hover:text-gray-900 font-medium"
-          >Projects</a
+        <a
+          href="#"
+          class={`block font-medium ${
+            true
+              ? "text-white hover:text-gray-100"
+              : "text-gray-700 hover:text-gray-900"
+          }`}>{translateLabels("nav.projects")}</a
         >
       </li>
       <li>
-        <a href="#" class="block text-gray-700 hover:text-gray-900 font-medium"
-          >Contact</a
+        <a
+          href="#"
+          class={`block font-medium ${
+            true
+              ? "text-white hover:text-gray-100"
+              : "text-gray-700 hover:text-gray-900"
+          }`}>{translateLabels("nav.contact")}</a
         >
       </li>
     </ul>
   </nav>
+  <div class="sidebar-footer">
+      <LanguagePicker isMobile />
+  </div>
 </div>
+
+<style>
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    border-right: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .sidebar-header {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .sidebar-nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .sidebar-nav li {
+    margin: 1rem 0;
+  }
+
+  .sidebar-nav a {
+    text-decoration: none;
+    font-size: 1rem;
+  }
+
+  .sidebar-nav a:hover {
+    color: #65788c;
+  }
+
+  .sidebar-footer {
+    text-align: center;
+  }
+
+  .sidebar-footer img {
+    max-width: 100px;
+    margin-top: 1rem;
+  }
+</style>
