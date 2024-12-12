@@ -6,25 +6,25 @@ import { useTranslations } from "../../i18n/utils";
 import { languageList } from "../../i18n/ui";
 
 const { isOpen } = Astro.props;
-const currentLang = Astro.currentLocale || "en";
 
+const currentLang = Astro.currentLocale || "en";
 const translateLabels = useTranslations(
   currentLang as keyof typeof languageList
 );
 ---
 
 <div
-  class={`sidebar bg-gray-800 transform transition-transform duration-300 ${
-    isOpen ? "translate-x-0" : "-translate-x-full"
+  class={`sidebar transform transition-transform duration-300 ${
+    isOpen ? "translate-x-0" : "hidden -translate-x-full"
   }`} id="mobile-menu">
   <div class="sidebar-header">
     <h1>Hector Dev.</h1>
   </div>
   <nav class="sidebar-nav">
-    <ul class="space-y-3">
+    <ul class="px-4">
       <li>
         <a
-          href="#"
+          href={getRelativeLocaleUrl(currentLang, '/')}
           class={`block font-medium ${
             true
               ? "text-white hover:text-gray-100"
@@ -44,7 +44,7 @@ const translateLabels = useTranslations(
       </li>
       <li>
         <a
-          href="#"
+          href="/here"
           class={`block font-medium ${
             true
               ? "text-white hover:text-gray-100"
@@ -54,7 +54,7 @@ const translateLabels = useTranslations(
       </li>
       <li>
         <a
-          href="#"
+          href="/asd"
           class={`block font-medium ${
             true
               ? "text-white hover:text-gray-100"
@@ -73,7 +73,8 @@ const translateLabels = useTranslations(
   .sidebar {
     width: 250px;
     height: 100vh;
-    border-right: 1px solid #e9ecef;
+    background-color: hsl(224, 14%, 16%);
+    border-right: 1px solid #2c353e;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -90,8 +91,12 @@ const translateLabels = useTranslations(
   }
 
   .sidebar-nav ul {
+    display: flex;
+    flex-direction: column;
+    border: hsl(224, 10%, 23%) 1px solid;
+    border-radius: 10px;
+    background-color: hsl(224, 10%, 10%);
     list-style-type: none;
-    padding: 0;
   }
 
   .sidebar-nav li {

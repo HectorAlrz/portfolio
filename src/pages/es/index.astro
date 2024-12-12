@@ -3,6 +3,8 @@ import ContactItems from "../../components/ContactItems.astro";
 import Experience from "../../components/Experience/Experience.astro";
 import Layout from "../../layouts/Layout.astro";
 import SectionContainer from "../../components/common/SectionContainer.astro";
+import SkeletonProyect from "../../components/common/SkeletonProyect.astro"
+import CodeIcon from "../../icons/CodeIcon.astro";
 ---
 
 <Layout>
@@ -16,7 +18,7 @@ import SectionContainer from "../../components/common/SectionContainer.astro";
         Hola!, Soy Héctor
       </h1>
       <p class="text-2xl opacity-80 text-pretty text-center">
-        Desarrollador <span class="cyberpunk-text">front-end</span> altamente motivado
+        <span class="cyberpunk-text">Front-end developer</span> altamente motivado
         con más de 2 años de experiencia, especializado en modernizar y optimizar
         aplicaciones web e impulsado por un compromiso con el aprendizaje continuo
         y la innovación
@@ -31,6 +33,19 @@ import SectionContainer from "../../components/common/SectionContainer.astro";
         Experiencia
       </h2>
       <Experience />
+    </SectionContainer>
+    <SectionContainer client:load className="py-16 sm:py-32 lg:py-44">
+      <div class="flex items-center pb-4">
+        <CodeIcon class="size-7 mr-4" />
+        <h2 class="flex font-bold font-heading leading-tighter tracking-tighter items-center text-heading text-3xl lg:text-4xl">
+          Proyectos
+        </h2>
+      </div>
+      <p class="text-center text-pretty opacity-80 pb-4">En construcción...</p>
+      <div class="flex justify-center flex-wrap gap-8 pt-4">
+        <SkeletonProyect />
+        <SkeletonProyect />
+      </div>
     </SectionContainer>
   </main>
 </Layout>
