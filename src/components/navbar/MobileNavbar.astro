@@ -34,7 +34,7 @@ const translateLabels = useTranslations(
       </li>
       <li>
         <a
-          href="#"
+          href="#about"
           class={`block font-medium ${
             true
               ? "text-white hover:text-gray-100"
@@ -44,22 +44,22 @@ const translateLabels = useTranslations(
       </li>
       <li>
         <a
-          href="/here"
+          href="#experience"
+          class={`block font-medium ${
+            true
+              ? "text-white hover:text-gray-100"
+              : "text-gray-700 hover:text-gray-900"
+          }`}>{translateLabels("nav.experience")}</a
+        >
+      </li>
+      <li>
+        <a
+          href="#projects"
           class={`block font-medium ${
             true
               ? "text-white hover:text-gray-100"
               : "text-gray-700 hover:text-gray-900"
           }`}>{translateLabels("nav.projects")}</a
-        >
-      </li>
-      <li>
-        <a
-          href="/asd"
-          class={`block font-medium ${
-            true
-              ? "text-white hover:text-gray-100"
-              : "text-gray-700 hover:text-gray-900"
-          }`}>{translateLabels("nav.contact")}</a
         >
       </li>
     </ul>
@@ -71,17 +71,17 @@ const translateLabels = useTranslations(
 
 <style>
   .sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: hsl(224, 14%, 16%);
-    border-right: 1px solid #2c353e;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem;
-    position: fixed;
-    top: 0;
+    top: 5.05rem;
     left: 0;
+    position: fixed;
+    width: 15.625rem;
+    height: calc(100vh - 5rem);
+    background-color: hsl(224, 14%, 16%);
+    border-right: 0.063rem solid #2c353e;
+    padding: 1rem;
   }
 
   .sidebar-header {
@@ -119,5 +119,12 @@ const translateLabels = useTranslations(
   .sidebar-footer img {
     max-width: 100px;
     margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      border-right: none;
+    }
   }
 </style>

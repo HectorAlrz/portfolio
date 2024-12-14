@@ -2,7 +2,7 @@ export const EXPERIENCE = [
   {
     id: 1,
     date: 'January 2022 - October 2024',
-    title: 'Front-End Developer Jr.',
+    title: 'Front-End Developer',
     description: `Contractor in Initialized Capital, transitioned a legacy JavaScript and Flow codebase to TypeScript, enhancing codebase maintainability, making it easier to onboard new developers, and improving the developer experience.
     Set up comprehensive unit testing with Jest and React Testing Library, alongside Cypress for end-to-end tests, leading to more robust code, earlier bug detection, and increased confidence in future deployments.
     Migrated the UI from Bootstrap to Material UI, delivering a more modern and responsive user experience while streamlining development workflows through reusable components.
@@ -24,7 +24,7 @@ export const ES_EXPERIENCE = [
   {
     id: 1,
     date: 'Enero 2022 - Octubre 2024',
-    title: 'Front-End Developer Jr.',
+    title: 'Front-End Developer',
     description: `Migración de una base de código legado de JavaScript y Flow a TypeScript, mejorando la mantenibilidad del código, facilitando la incorporación de nuevos desarrolladores y optimizando la experiencia del desarrollador.
     Configuración de pruebas unitarias con Jest y React Testing Library, junto con pruebas de extremo a extremo usando Cypress, lo que permitió detectar errores más temprano y aumentar la confianza en los despliegues.
     Migración del sistema de diseño de Bootstrap a Material UI, logrando una experiencia de usuario más moderna y responsiva, además de optimizar flujos de trabajo mediante componentes reutilizables.

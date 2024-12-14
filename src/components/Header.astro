@@ -1,8 +1,21 @@
 ---
 import Avatar from "./Avatar.astro";
+import BurgerButton from "./BurgerButton.astro";
 import DesktopNavbar from "./navbar/DesktopNavbar.astro";
 import MobileNavbar from "./navbar/MobileNavbar.astro";
 import WorkBadge from "./WorkBadge.astro";
+
+
+const now = new Date();
+
+const utcHours = now.getUTCHours();
+const utcMinutes = now.getUTCMinutes();
+const gmt6Hours = (utcHours - 6 + 24) % 24;
+
+const hours = gmt6Hours.toString().padStart(2, '0');
+const minutes = utcMinutes.toString().padStart(2, '0');
+
+const formattedTime = `${hours}:${minutes} GMT-6`;
 ---
 
 <header class="sticky top-0 backdrop-blur-sm z-50 header">
@@ -12,28 +25,11 @@ import WorkBadge from "./WorkBadge.astro";
         <Avatar />
         <WorkBadge />
       </div>
+        <p class="time sm:invisible md:visible text-sm">
+          {formattedTime}
+        </p>
       <DesktopNavbar />
-      {/* Burger Button */}
-      <button
-        id="menu-toggle"
-        aria-expanded="false"
-        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden"
-        aria-label="Toggle menu"
-      >
-        <span class="sr-only">Open main menu</span>
-        <svg
-          class="block h-6 w-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16m-16 6h16"></path>
-        </svg>
-      </button>
+      <BurgerButton />
     </div>
   </div>
   <MobileNavbar />
@@ -68,6 +64,17 @@ import WorkBadge from "./WorkBadge.astro";
       })
     })
   };
+
+  document.addEventListener("click", (event) => {
+    const isMenuOpen = menuButton?.getAttribute("aria-expanded") === "true";
+
+    if (isMenuOpen && mobileMenu && !mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+      menuButton?.setAttribute("aria-expanded", "false");
+      mobileMenu.classList.add("hidden");
+      mobileMenu.classList.add("-translate-x-full");
+      mobileMenu.classList.remove("translate-x-0");
+    }
+  });
 
   const header = document.querySelector(".header");
   window.addEventListener("scroll", () => {

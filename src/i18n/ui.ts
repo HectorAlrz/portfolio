@@ -11,13 +11,13 @@ export const labels = {
     'nav.about': 'Acerca de',
     'nav.projects': 'Proyectos',
     'nav.contact': 'Contacto',
-    'work.experience': EXPERIENCE
+    'nav.experience': 'Experiencia'
   },
   en: {
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.projects': 'Projects',
     'nav.contact': 'Contact',
-    'work.experience': ES_EXPERIENCE
+    'nav.experience': 'Experience'
   }
 };

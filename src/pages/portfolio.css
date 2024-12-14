@@ -1,0 +1,69 @@
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  border-radius: 0.313rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border: solid 1px #333232;
+}
+
+.cyberpunk-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation:
+    gradient-animation 3s ease infinite,
+    color-animation 5s ease infinite;
+}
+
+.time {
+  color: hsl(0deg 0% 100% / 50%)
+}
+
+#about {
+  scroll-margin-top: 512px;
+}
+#experience {
+  scroll-margin-top: 110px;
+}
+#projects {
+  scroll-margin-top: 110px;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-image: linear-gradient(to right, #0f0, #0ff);
+  }
+  25% {
+    background-image: linear-gradient(to bottom, #0ff, #f0f);
+  }
+  50% {
+    background-image: linear-gradient(to left, #f0f, #ff0);
+  }
+  75% {
+    background-image: linear-gradient(to top, #ff0, #f00);
+  }
+  100% {
+    background-image: linear-gradient(to right, #f00, #0f0);
+  }
+}
+
+@keyframes color-animation {
+  0% {
+    color: #0f0;
+  }
+  25% {
+    color: #0ff;
+  }
+  50% {
+    color: #f0f;
+  }
+  75% {
+    color: #ff0;
+  }
+  100% {
+    color: #0f0;
+  }
+}

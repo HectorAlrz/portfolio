@@ -3,8 +3,8 @@ import ContactItems from "./ContactItems.astro";
 ---
 
 <footer
-  class="flex items-center justify-between py-6 px-6 not-prose text-center text-sm border-t border-gray-700"
+  class="sm:invisible md:visible lg:visible flex items-center justify-between py-6 px-6 not-prose text-center text-sm border-t border-gray-700"
 >
-  <h3 class="text-lg text-gray-500">Happy <span class="cyberpunk-text">Coding!</span></h3>
+  <h3 aria-labelledby="happy coding" class="text-lg text-gray-500">Happy <span class="cyberpunk-text">Coding!</span></h3>
   <ContactItems isFooter />
 </footer>
