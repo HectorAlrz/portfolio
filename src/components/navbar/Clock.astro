@@ -1,0 +1,23 @@
+
+<p id="current-time" class="time sm:invisible lg:visible text-sm">
+  <slot />
+</p>
+
+<script>
+  const updateTime = () => {
+    const now = new Date();
+    const utcHours = now.getUTCHours();
+    const utcMinutes = now.getUTCMinutes();
+    const gmt6Hours = (utcHours - 6 + 24) % 24;
+
+    const hours = gmt6Hours.toString().padStart(2, "0");
+    const minutes = utcMinutes.toString().padStart(2, "0");
+
+    const timeString = `${hours}:${minutes} GMT-6`;
+
+    document.getElementById("current-time").textContent = timeString;
+  };
+
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>

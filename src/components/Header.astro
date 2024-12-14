@@ -1,21 +1,10 @@
 ---
 import Avatar from "./Avatar.astro";
+import Clock from "./navbar/Clock.astro";
 import BurgerButton from "./BurgerButton.astro";
 import DesktopNavbar from "./navbar/DesktopNavbar.astro";
 import MobileNavbar from "./navbar/MobileNavbar.astro";
 import WorkBadge from "./WorkBadge.astro";
-
-
-const now = new Date();
-
-const utcHours = now.getUTCHours();
-const utcMinutes = now.getUTCMinutes();
-const gmt6Hours = (utcHours - 6 + 24) % 24;
-
-const hours = gmt6Hours.toString().padStart(2, '0');
-const minutes = utcMinutes.toString().padStart(2, '0');
-
-const formattedTime = `${hours}:${minutes} GMT-6`;
 ---
 
 <header class="sticky top-0 backdrop-blur-sm z-50 header">
@@ -25,9 +14,7 @@ const formattedTime = `${hours}:${minutes} GMT-6`;
         <Avatar />
         <WorkBadge />
       </div>
-        <p class="time sm:invisible md:visible text-sm">
-          {formattedTime}
-        </p>
+      <Clock />
       <DesktopNavbar />
       <BurgerButton />
     </div>
@@ -35,21 +22,28 @@ const formattedTime = `${hours}:${minutes} GMT-6`;
   <MobileNavbar />
 </header>
 
+<style>
+  .header {
+    transition: border-bottom 0.3s ease-in-out;
+    /* background: rgba(120, 119, 198, 0.3); */
+  }
+</style>
+
 <script>
   const menuButton = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
   const sidebarLinks = mobileMenu?.querySelectorAll("a");
-  
+
   if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", () => {
       const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
       menuButton.setAttribute("aria-expanded", String(!isExpanded));
-      
+
       mobileMenu.classList.toggle("hidden");
       mobileMenu.classList.toggle("-translate-x-full");
-      mobileMenu.classList.toggle("translate-x-0"); 
-    })
-  };
+      mobileMenu.classList.toggle("translate-x-0");
+    });
+  }
 
   if (sidebarLinks) {
     sidebarLinks.forEach((link) => {
@@ -60,15 +54,20 @@ const formattedTime = `${hours}:${minutes} GMT-6`;
         mobileMenu?.classList.toggle("hidden");
         mobileMenu?.classList.toggle("-translate-x-full");
         mobileMenu?.classList.toggle("translate-x-0");
-        window.location.href = link.href; 
-      })
-    })
-  };
+        window.location.href = link.href;
+      });
+    });
+  }
 
   document.addEventListener("click", (event) => {
     const isMenuOpen = menuButton?.getAttribute("aria-expanded") === "true";
 
-    if (isMenuOpen && mobileMenu && !mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+    if (
+      isMenuOpen &&
+      mobileMenu &&
+      !mobileMenu.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ) {
       menuButton?.setAttribute("aria-expanded", "false");
       mobileMenu.classList.add("hidden");
       mobileMenu.classList.add("-translate-x-full");
@@ -85,10 +84,3 @@ const formattedTime = `${hours}:${minutes} GMT-6`;
     }
   });
 </script>
-
-<style>
-  .header {
-    transition: border-bottom 0.3s ease-in-out;
-    /* background: rgba(120, 119, 198, 0.3); */
-  }
-</style>
