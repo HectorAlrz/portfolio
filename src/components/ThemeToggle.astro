@@ -1,0 +1,71 @@
+---
+import SunIcon from "../icons/SunIcon.astro";
+import MoonIcon from "../icons/MoonIcon.astro";
+---
+
+<button
+  id="theme-toggle"
+  class="theme-toggle inline-flex items-center"
+  aria-label="Toggle theme"
+>
+  <SunIcon class="sun size-6" fill-rule="evenodd" clip-rule="evenodd" />
+  <MoonIcon class="moon size-6" fill-rule="evenodd" clip-rule="evenodd" />
+</button>
+
+<style>
+  .theme-toggle {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+    padding: 0;
+  }
+  .sun {
+    display: none;
+  }
+  .moon {
+    display: block;
+  }
+  :global(.dark) .sun {
+    display: block;
+  }
+  :global(.dark) .moon {
+    display: none;
+  }
+</style>
+
+<script is:inline>
+  window.matchMedia("(prefers-color-scheme: dark)")
+  function getThemePreference() {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    const themeToggle = document.getElementById("theme-toggle");
+    if (themeToggle) {
+      themeToggle.addEventListener("click", handleToggleClick);
+    }
+  });
+
+  function setTheme(theme) {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+    localStorage.setItem("theme", theme);
+  }
+
+  setTheme(getThemePreference());
+
+  const handleToggleClick = () => {
+    const element = document.documentElement;
+    const isDark = element.classList.contains("dark");
+    setTheme(isDark ? "light" : "dark");
+  };
+
+
+  setTheme(getThemePreference());
+</script>

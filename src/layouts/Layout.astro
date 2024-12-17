@@ -42,21 +42,24 @@ const {
     <ClientRouter fallback="swap" />
     <title>{title}</title>
   </head>
-  <body class="antialiased">
+  <body class="antialiased bg-slate-950">
+
     <!-- Background gradient -->
-    <div class="relative h-full w-full bg-slate-950">
+    <div class="absolute h-full w-full">
       <div
         class="pointer-events-none fixed inset-0 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
       >
       </div>
+    </div>
 
-      <!-- Skip to main content link for accessibility -->
-      <a
-        href="#main-content"
-        class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded"
-      >
-        Skip to main content
-      </a>
+    <!-- Skip to main content link for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded"
+    >
+      Skip to main content
+    </a>
+    <div class="relative flex flex-col min-h-screen">
       <Header client:load />
       <slot />
       <Footer client:load />
@@ -113,6 +116,12 @@ const {
       ::selection {
         background: rgba(120, 119, 198, 0.3);
         color: inherit;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: rgba(255, 255, 255, 0.9);
+        }
       }
     </style>
   </body>
