@@ -10,7 +10,7 @@ import { TAGS } from "../../helpers/projectHelper";
 ---
 
 <Layout>
-  <main class="relative px-4 sm:px-8 lg:px-16">
+  <main class="relative px-4 sm:px-8 lg:px-16" transition:animate="initial">
     <SectionContainer
       className="flex flex-col items-center justify-center pt-16 sm:py-32 lg:py-44 px-4 sm:px-8 lg:px-16"
     >
@@ -52,7 +52,7 @@ import { TAGS } from "../../helpers/projectHelper";
           Proyectos
         </h2>
       </div>
-      <p class="text-center text-pretty opacity-80 pb-4">Coming soon...</p>
+      <p class="text-pretty opacity-80 pb-4 text-center lg:text-start">En construcción...</p>
       <div class="flex justify-center flex-wrap gap-8 pt-4">
         <SkeletonProyect />
         <SkeletonProyect />
@@ -70,13 +70,12 @@ import { TAGS } from "../../helpers/projectHelper";
         </h2>
       </div>
       <div
-        class="icons bg-black/30 blackdrop-blur-md flex justify-space-between flex-wrap gap-8"
+        class="icons bg-black/30 blackdrop-blur-md flex flex-wrap justify-center sm:justify-start gap-4 sm:gap-8 p-4"
       >
         {
           Object.entries(TAGS).map(([key, value]) => (
-            <div
-              id={key}
-              class="flex items-center gap-2 cursor-pointer hover:scale-150 transition-all duration-300"
+            <div id={key}
+              class="flex items-center gap-2 cursor-pointer hover:scale-150 transition-all duration-300 text-sm sm:text-base"
             >
               {<value.icon class="size-8" />}
               <span>{value.name}</span>

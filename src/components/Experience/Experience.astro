@@ -7,20 +7,27 @@ const currentLang = Astro.currentLocale || "en";
 const exp = currentLang === "es" ? ES_EXPERIENCE : EXPERIENCE;
 ---
 
-<div class="relative border-s border-dashed border-slate-600 dark:border-gray-700">
-  {
-    exp.map((job) => {
-      const { date, description, link, title, id } = job;
+<div class="pl-3">
+  <div class="relative pl-6 border-l-2 border-dashed border-slate-600 dark:border-gray-700 border-gradient-to-b from-gray-200 to-transparent">
+    {
+      exp.map((job) => {
+        const { company, date, description, link, title, id } = job;
 
-      return (
+        return (
         <ExperienceItem
-          key={id}
-          title={title}
-          date={date}
-          description={description}
-          link={link}
+        key={id}
+        company={company}
+        title={title}
+        date={date}
+        description={description}
+        link={link}
         />
       );
     })
   }
+  </div>
 </div>
+
+
+
+<!--"p-2 relative border-s border-dashed border-slate-600 dark:border-gray-700" -->

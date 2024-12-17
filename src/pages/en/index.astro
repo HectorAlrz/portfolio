@@ -10,7 +10,7 @@ import { TAGS } from "../../helpers/projectHelper";
 ---
 
 <Layout>
-  <main class="px-4 sm:px-8 lg:px-16">
+  <main class="relative px-4 sm:px-8 lg:px-16" transition:animate="initial">
     <SectionContainer
       className="flex flex-col items-center py-16 sm:py-32 lg:py-44"
     >
@@ -74,7 +74,7 @@ import { TAGS } from "../../helpers/projectHelper";
         {
           Object.entries(TAGS).map(([key, value]) => (
             <div id={key}
-              class="flex items-center gap-2 cursor-pointer hover:scale-110 transition-all duration-300 text-sm sm:text-base"
+              class="flex items-center gap-2 cursor-pointer hover:scale-150 transition-all duration-300 text-sm sm:text-base"
             >
               {<value.icon class="size-8" />}
               <span>{value.name}</span>

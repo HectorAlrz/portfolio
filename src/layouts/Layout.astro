@@ -23,7 +23,7 @@ const {
 ---
 
 <!doctype html>
-<html lang={currentLang} class="scroll-smooth">
+<html lang={currentLang} class="scroll-smooth"  transition:animate="fade">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,11 +39,10 @@ const {
     <link rel="icon" type="image/svg+xml" href="/code.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <ClientRouter fallback="swap" />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body class="antialiased bg-slate-950">
-
     <!-- Background gradient -->
     <div class="absolute h-full w-full">
       <div
@@ -59,12 +58,10 @@ const {
     >
       Skip to main content
     </a>
-    <div class="relative flex flex-col min-h-screen">
       <Header client:load />
       <slot />
       <Footer client:load />
     </div>
-
     <style is:global>
       :root {
         --bg-color: rgba(17, 17, 17, 0.9);

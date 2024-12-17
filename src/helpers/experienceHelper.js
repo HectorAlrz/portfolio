@@ -1,6 +1,7 @@
 export const EXPERIENCE = [
   {
     id: 1,
+    company: "Initialized Capital",
     date: "January 2022 - October 2024",
     title: "Front-End Developer",
     description: `Contractor at Initialized Capital. Contributed to the transition from a legacy JavaScript and Flow codebase to TypeScript, which improved codebase maintainability. 
@@ -13,6 +14,7 @@ export const EXPERIENCE = [
   },
   {
     id: 2,
+    company: "Power Electronics",
     date: "January 2019 - May 2020",
     title: "Field Engineer",
     description: "Technical support, maintenance, and commissioning of solar inverters in various solar power plants across Florida, Mexico, and the Dominican Republic",
@@ -23,6 +25,7 @@ export const EXPERIENCE = [
 export const ES_EXPERIENCE = [
   {
     id: 1,
+    company: "Initialized Capital",
     date: "Enero 2022 - Octubre 2024",
     title: "Front-End Developer",
     description: `Contractor at Initialized Capital. Contribuí a la transición de una base de código antigua en JavaScript y Flow a TypeScript, lo que mejoró la mantenibilidad de la base de código.
@@ -35,9 +38,11 @@ export const ES_EXPERIENCE = [
   },
   {
     id: 2,
+    company: "Power Electronics",
     date: "Enero 2019 - Mayo 2020",
     title: "Ingeniero de Campo",
-    description: "Description here",
+    description: `Soporte técnico, mantenimiento y puesta en marcha de inversores solares en diversas plantas de
+    generación solar en Florida, México y República Dominicana`,
     link: "#",
   },
 ];
