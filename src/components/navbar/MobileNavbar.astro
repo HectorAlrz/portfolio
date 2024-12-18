@@ -18,7 +18,7 @@ const translateLabels = useTranslations(
     isOpen ? "translate-x-0" : "hidden -translate-x-full"
   }`} id="mobile-menu">
   <div class="sidebar-header">
-    <h1>Hector Dev.</h1>
+    <h1 class="text-white">Hector Dev.</h1>
   </div>
   <nav class="sidebar-nav">
     <ul class="px-4">
@@ -30,16 +30,6 @@ const translateLabels = useTranslations(
               ? "text-white hover:text-gray-100"
               : "text-gray-700 hover:text-gray-900"
           }`}>{translateLabels("nav.home")}</a
-        >
-      </li>
-      <li>
-        <a
-          href="#about"
-          class={`block font-medium ${
-            true
-              ? "text-white hover:text-gray-100"
-              : "text-gray-700 hover:text-gray-900"
-          }`}>{translateLabels("nav.about")}</a
         >
       </li>
       <li>
@@ -60,6 +50,16 @@ const translateLabels = useTranslations(
               ? "text-white hover:text-gray-100"
               : "text-gray-700 hover:text-gray-900"
           }`}>{translateLabels("nav.projects")}</a
+        >
+      </li>
+      <li>
+        <a
+          href="#stack"
+          class={`block font-medium ${
+            true
+              ? "text-white hover:text-gray-100"
+              : "text-gray-700 hover:text-gray-900"
+          }`}>Stack</a
         >
       </li>
     </ul>
