@@ -5,6 +5,11 @@ import LanguagePicker from "../LanguagePicker.astro";
 import { useTranslations } from "../../i18n/utils";
 import { languageList } from "../../i18n/ui";
 
+import HomeIcon from "../../icons/HomeIcon.astro";
+import PortfolioIcon from "../../icons/PortfolioIcon.astro";
+import CodeIcon from "../../icons/CodeIcon.astro";
+import StackIcon from "../../icons/StackIcon.astro";
+
 const { isOpen } = Astro.props;
 
 const currentLang = Astro.currentLocale || "en";
@@ -22,40 +27,44 @@ const translateLabels = useTranslations(
   </div>
   <nav class="sidebar-nav">
     <ul class="px-4">
-      <li>
+      <li class="flex items-center">
+        <HomeIcon class="size-4" />
         <a
           href={getRelativeLocaleUrl(currentLang, '/')}
-          class={`block font-medium ${
+          class={`pl-2 block font-medium ${
             true
               ? "text-white hover:text-gray-100"
               : "text-gray-700 hover:text-gray-900"
           }`}>{translateLabels("nav.home")}</a
         >
       </li>
-      <li>
+      <li class="flex items-center">
+        <PortfolioIcon class="size-4" />
         <a
           href="#experience"
           class={`block font-medium ${
             true
-              ? "text-white hover:text-gray-100"
+              ? "pl-2 text-white hover:text-gray-100"
               : "text-gray-700 hover:text-gray-900"
           }`}>{translateLabels("nav.experience")}</a
         >
       </li>
-      <li>
+      <li class="flex items-center">
+        <CodeIcon class="size-4" />
         <a
           href="#projects"
-          class={`block font-medium ${
+          class={`pl-2 block font-medium ${
             true
               ? "text-white hover:text-gray-100"
               : "text-gray-700 hover:text-gray-900"
           }`}>{translateLabels("nav.projects")}</a
         >
       </li>
-      <li>
+      <li class="flex items-center">
+        <StackIcon class="size-4" />
         <a
           href="#stack"
-          class={`block font-medium ${
+          class={`pl-2 block font-medium ${
             true
               ? "text-white hover:text-gray-100"
               : "text-gray-700 hover:text-gray-900"
