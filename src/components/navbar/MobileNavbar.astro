@@ -18,79 +18,66 @@ const translateLabels = useTranslations(
 );
 ---
 
-<div
+<aside
   class={`sidebar transform transition-transform duration-300 ${
     isOpen ? "translate-x-0" : "hidden -translate-x-full"
-  }`} id="mobile-menu">
-  <div class="sidebar-header">
-    <h1 class="text-white">Hector Dev.</h1>
-  </div>
-  <nav class="sidebar-nav">
-    <ul class="px-4">
-      <li class="flex items-center">
-        <HomeIcon class="size-4" />
-        <a
-          href={getRelativeLocaleUrl(currentLang, '/')}
-          class={`pl-2 block font-medium ${
-            true
-              ? "text-white hover:text-gray-100"
-              : "text-gray-700 hover:text-gray-900"
-          }`}>{translateLabels("nav.home")}</a
-        >
-      </li>
-      <li class="flex items-center">
-        <PortfolioIcon class="size-4" />
-        <a
-          href="#experience"
-          class={`block font-medium ${
-            true
-              ? "pl-2 text-white hover:text-gray-100"
-              : "text-gray-700 hover:text-gray-900"
-          }`}>{translateLabels("nav.experience")}</a
-        >
-      </li>
-      <li class="flex items-center">
-        <CodeIcon class="size-4" />
-        <a
-          href="#projects"
-          class={`pl-2 block font-medium ${
-            true
-              ? "text-white hover:text-gray-100"
-              : "text-gray-700 hover:text-gray-900"
-          }`}>{translateLabels("nav.projects")}</a
-        >
-      </li>
-      <li class="flex items-center">
-        <StackIcon class="size-4" />
-        <a
-          href="#stack"
-          class={`pl-2 block font-medium ${
-            true
-              ? "text-white hover:text-gray-100"
-              : "text-gray-700 hover:text-gray-900"
-          }`}>Stack</a
-        >
-      </li>
-    </ul>
-  </nav>
-  <div class="sidebar-footer border-t-1">
+  }`}
+  id="mobile-menu"
+>
+  <div>
+    <header class="sidebar-header">
+      <h1 class="text-white">Hector Dev.</h1>
+    </header>
+    <nav class="sidebar-nav m-10">
+      <ul class="px-4">
+        <li class="navigation-item">
+          <HomeIcon class="text-white size-4" />
+          <a
+            href={getRelativeLocaleUrl(currentLang, "/")}
+            class="navigation-link"
+          >
+            {translateLabels("nav.home")}
+          </a>
+        </li>
+        <li class="navigation-item">
+          <PortfolioIcon class="text-white size-4" />
+          <a href="#experience" class="navigation-link">
+            {translateLabels("nav.experience")}
+          </a>
+        </li>
+        <li class="navigation-item">
+          <CodeIcon class="text-white size-4" />
+          <a href="#projects" class="navigation-link">
+            {translateLabels("nav.projects")}
+          </a>
+        </li>
+        <li class="navigation-item">
+          <StackIcon class="text-white size-4" />
+          <a href="#stack" class="navigation-link">Stack</a>
+        </li>
+      </ul>
+    </nav>
+    <footer class="sidebar-footer">
       <LanguagePicker isMobile />
+    </footer>
   </div>
-</div>
+</aside>
 
 <style>
   .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     top: 5.05rem;
     left: 0;
     position: fixed;
     width: 15.625rem;
     height: calc(100vh - 5rem);
-    background-color: hsl(224, 14%, 16%);
     border-right: 0.063rem solid #2c353e;
     padding: 1rem;
+    background-color: #0f172a;
+    background-image: radial-gradient(#ffffff33 1px, #020b1e 1px);
+    animation: slideBackground 10s linear infinite;
+    background-size: 50px 50px;
   }
 
   .sidebar-header {
@@ -108,17 +95,18 @@ const translateLabels = useTranslations(
     list-style-type: none;
   }
 
-  .sidebar-nav li {
-    margin: 1rem 0;
+  .navigation-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease-in-out;
   }
 
   .sidebar-nav a {
     text-decoration: none;
     font-size: 1rem;
-  }
-
-  .sidebar-nav a:hover {
-    color: #65788c;
   }
 
   .sidebar-footer {
@@ -134,6 +122,15 @@ const translateLabels = useTranslations(
     .sidebar {
       width: 100%;
       border-right: none;
+    }
+  }
+
+  @keyframes slideBackground {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
     }
   }
 </style>

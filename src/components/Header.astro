@@ -35,15 +35,36 @@ import WorkBadge from "./WorkBadge.astro";
   const menuButton = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
   const sidebarLinks = mobileMenu?.querySelectorAll("a");
+  const languagePicker = mobileMenu?.querySelector("#language-select");
+
+  function toggleMobileMenu() {
+    const isExpanded = menuButton?.getAttribute("aria-expanded") === "true";
+    menuButton?.setAttribute("aria-expanded", String(!isExpanded));
+    mobileMenu?.classList.toggle("hidden");
+    mobileMenu?.classList.toggle("-translate-x-full");
+    mobileMenu?.classList.toggle("translate-x-0");
+  }
+
+  function initLanguagePicker() {
+    if (!languagePicker) return;
+    console.log("Initializing Language Picker:", languagePicker); // Debugging
+
+    languagePicker.removeEventListener("change", onChangeLanguage);
+
+    languagePicker.addEventListener("change", onChangeLanguage);
+  }
+
+  function onChangeLanguage(event) {
+    const selectedValue = event.target.value;
+    if (selectedValue) {
+      window.location.href = selectedValue;
+    }
+  }
 
   if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", () => {
-      const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", String(!isExpanded));
-
-      mobileMenu.classList.toggle("hidden");
-      mobileMenu.classList.toggle("-translate-x-full");
-      mobileMenu.classList.toggle("translate-x-0");
+      toggleMobileMenu();
+      initLanguagePicker();
     });
   }
 
@@ -51,11 +72,7 @@ import WorkBadge from "./WorkBadge.astro";
     sidebarLinks.forEach((link) => {
       link.addEventListener("click", (event) => {
         event.preventDefault();
-        const isExpanded = menuButton?.getAttribute("aria-expanded") === "true";
-        menuButton?.setAttribute("aria-expanded", String(!isExpanded));
-        mobileMenu?.classList.toggle("hidden");
-        mobileMenu?.classList.toggle("-translate-x-full");
-        mobileMenu?.classList.toggle("translate-x-0");
+        toggleMobileMenu();
         window.location.href = link.href;
       });
     });
@@ -85,4 +102,9 @@ import WorkBadge from "./WorkBadge.astro";
       header?.classList.remove("border-b", "border-gray-600");
     }
   });
+
+  document.addEventListener("astro:page-load", () => {
+    initLanguagePicker();
+  });
 </script>
+
